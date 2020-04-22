@@ -1,9 +1,10 @@
 ﻿
-// Author: Najlepszy Wyraz Twarzy
+// Author: Daniel Pietrzeniuk
 
 // Zadanie 7 - figury
 
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
@@ -11,22 +12,30 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Tris tris = new Tris("red", new Vector2[] { Vector2.Zero, new Vector2(2, 0), new Vector2(1, 2) });
+            List<Shape> shapes = new List<Shape>();
 
-            Console.WriteLine("\n Trójkąt: " + tris + "\n");
+            shapes.Add(new Tris("red", new Vector2[] { Vector2.Zero, new Vector2(2, 0), new Vector2(1, 2) }));
 
-
-            Square square = new Square("blue", new Vector2(-5, 7), 3);
-
-            Console.WriteLine("\n Kwadrat przed zmianami: " + square + "\n");
-
-            square.Move(new Vector2(10, -2));
-            square.color = "yellow";
-
-            Console.WriteLine("\n Kwadrat po zmianach: " + square + "\n");
+            Console.WriteLine("\nTrójkąt: " + shapes[0] + "\n");
 
 
-            Console.WriteLine("\n Jedna z lini kwadratu: " + square.lines[0] + "\n");
+            shapes.Add(new Square("blue", new Vector2(-5, 7), 3));
+
+            Console.WriteLine("\nKwadrat przed zmianami: " + shapes[1] + "\n");
+
+            shapes[1].Move(new Vector2(10, -2));
+            shapes[1].color = "yellow";
+
+            Console.WriteLine("\nKwadrat po zmianach: " + shapes[1] + "\n");
+
+            Quad quad = (Quad)shapes[1];
+
+            Console.WriteLine("\nJedna z lini kwadratu: " + quad.lines[0] + "\n");
+
+            Console.WriteLine("\nZawartość kolekcji:");
+
+            foreach (Shape shape in shapes)
+                Console.WriteLine(shape);
         }
     }
 
